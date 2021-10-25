@@ -1,10 +1,8 @@
-function LibraryItem(media, removeFunction){
+function LibraryItem(media, removeFunction, qty){
     // list of possible values (enum)
     const STATUSES = {CHECKED_OUT: 'out', CHECKED_IN: 'in', LOST: 'lost'}
+    media.qty = qty || 2;
 
-    media.getId = function(){
-        return media.id;
-    }
     // decorating/adding functionality to an existing object
     media.status = STATUSES.CHECKED_IN;
 
@@ -14,7 +12,10 @@ function LibraryItem(media, removeFunction){
     }
 
     media.checkOut = function(){
-        this.status = STATUSES.CHECKED_OUT;
+        if(media.qty >0){
+            media.qty --;
+            this.status = STATUSES.CHECKED_OUT;
+        }
     }
 
     media.isAvailable = function(){
@@ -23,6 +24,8 @@ function LibraryItem(media, removeFunction){
     //media.remove = removeFunction || (() => {});
     //                             || in case a function wasn't provided
     media.remove = removeFunction || function(){};
+
+
 
     return media;
 }

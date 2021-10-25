@@ -33,16 +33,9 @@ export default {
   },
   methods: {
     addToBag(item){
-      this.bag.addItem(item)
+        this.bag.addItem(item)
     },
     checkOutBag(){
-      // for(let bagItem in this.bag){
-      //   for(let libraryItem in this.library){
-      //     if(bagItem.id === libraryItem.id){
-      //       libraryItem.checkOut();
-      //     }
-      //   }
-      // }
       this.bag.forEach(
           b => {
             if(this.library.some(i => i.id === b.id)){

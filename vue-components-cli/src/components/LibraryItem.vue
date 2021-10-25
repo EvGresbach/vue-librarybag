@@ -2,6 +2,7 @@
   <div class="card" :class="item.isAvailable() ? 'border-success' : 'border-warning'" style="border-width: 3px;">
     <div class="card-body">
       <component :is="typeOfItem" :item="item"></component>
+      <p>{{item.qty}}</p>
     </div>
     <div class="card-footer">
       <button @click="item.checkOut()" class="btn btn-secondary">Check Out</button>

@@ -1,3 +1,5 @@
+const MILLITOMIN = 60000;
+
 function LibraryItem(media, removeFunction, qty){
     // list of possible values (enum)
     const STATUSES = {CHECKED_OUT: 'out', CHECKED_IN: 'in', LOST: 'lost'}
@@ -30,25 +32,71 @@ function LibraryItem(media, removeFunction, qty){
     return media;
 }
 
-function Book(title, pages){
-    this.pages = pages;
-    this.title = title || 'Default Title';
-    this.id = Math.floor(Math.random() * 10e16);
+function Book(trackName, artistName, trackId){
+    this.artistName = artistName; //author
+    this.trackName = trackName; //title
+    this.trackId = trackId;
 }
 
 // same as above using class syntax
-function Movie(title, runningTime){
-    this.runningTime = runningTime;
-    this.title = title || 'Default Title';
-    this.id = Math.floor(Math.random() * 10e16);
+function Movie(trackName, trackTimeMillis, trackId){
+    this.trackTimeMillis = trackTimeMillis/MILLITOMIN;
+    this.trackName = trackName;
+    this.trackId = trackId;
 }
 
-function Album(title, artist, trackCount){
-    this.title = title;
-    this.artist = artist;
+function Album(collectionName, artistName, trackCount, collectionId){
+    this.collectionName = collectionName;
+    this.artistName = artistName;
     this.trackCount = trackCount;
-    this.id = Math.floor(Math.random() * 10e16);
+    this.collectionId = collectionId;
+}
+
+function Song(trackName, trackId, artistName, collectionName, ){
+    this.trackName = trackName;
+    this.artistName = artistName;
+    this.collectionName = collectionName;
+    this.trackId = trackId;
+}
+
+function Podcast(trackId, trackName, artistName, collectionName){
+    this.trackName = trackName;
+    this.artistName = artistName;
+    this.collectionName = collectionName;
+    this.trackId = trackId;
+}
+
+function MusicVideo(trackName,artistName, collectionName, trackId){
+    this.trackName = trackName;
+    this.artistName = artistName;
+    this.collectionName = collectionName;
+    this.trackId = trackId;
+}
+
+function Audiobook(collectionName, artistName, trackId){
+    this.artistName = artistName; //author
+    this.collectionName = collectionName; //title
+    this.trackId = trackId;
+}
+
+function ShortFilm(trackName, trackTimeMillis, trackId){
+    this.trackTimeMillis = trackTimeMillis/MILLITOMIN;
+    this.trackName = trackName;
+    this.trackId = trackId;
+
+}
+function TvShow(trackName, trackTimeMillis, collectionName, trackId){
+    this.trackTimeMillis = trackTimeMillis/MILLITOMIN;
+    this.trackName = trackName;
+    this.collectionName = collectionName;
+    this.trackId = trackId;
+
+}
+function Software(trackName, sellerName, trackId){
+    this.trackName = trackName;
+    this.sellerName = sellerName;
+    this.trackId = trackId;
 }
 
 // export multiple classes/functions/objects/etc
-export {LibraryItem, Book, Movie, Album}
+export {LibraryItem, Movie, Book, Album, Podcast, MusicVideo, Software, ShortFilm, TvShow, Audiobook, Song}

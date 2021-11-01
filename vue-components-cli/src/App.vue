@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     addToBag(item){
-        this.bag.addItem(item)
+      this.bag.addItem(item)
     },
     checkOutBag(){
       this.bag.forEach(

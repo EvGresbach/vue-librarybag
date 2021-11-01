@@ -12,8 +12,7 @@ function BagItem(media, removeFunction){
     media.isAvailable = function(){
         return this.status === STATUSES.CHECKED_IN;
     }
-    //media.remove = removeFunction || (() => {});
-    //                             || in case a function wasn't provided
+
     media.remove = removeFunction || function(){};
 
     return media;

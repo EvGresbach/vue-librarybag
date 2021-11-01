@@ -1,4 +1,4 @@
-import {BagItem} from "@/models/BagItem";
+import BagItem from "@/models/BagItem";
 
 function Bag(){
     let arr = [];
@@ -7,8 +7,8 @@ function Bag(){
         this.push(new BagItem(
             item,
             ((collection) => function(){
-            collection.removeItem(this);
-        })(this))
+            collection.removeItem(this)
+        })(this)),
         );
 
         return this;

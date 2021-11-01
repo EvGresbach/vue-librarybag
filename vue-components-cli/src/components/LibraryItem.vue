@@ -7,7 +7,7 @@
     <div class="card-footer">
       <button @click="item.checkOut()" class="btn btn-secondary">Check Out</button>
       <button @click="item.checkIn()" class="btn btn-secondary">Check In</button>
-      <button @click="$emit('add-to-bag')" class="btn btn-secondary">Add To Bag</button>
+      <button @click="addToBag" class="btn btn-secondary">Add To Bag</button>
       <button @click="item.remove()" class="btn btn-warning">Remove Me</button>
     </div>
   </div>
@@ -42,6 +42,14 @@ export default {
   props: {
     item: Object,
     removeFunction: Function,
+  },
+  methods: {
+    addToBag(){
+      if (this.item.qty > 0){
+        this.item.checkOut();
+        this.$emit('add-to-bag');
+      }
+    }
   },
   computed: {
     typeOfItem(){

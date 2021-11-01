@@ -10,15 +10,28 @@ function LibraryItem(media, removeFunction){
 
     // methods
     media.checkIn = function(){
+        media.addQty();
         this.status = STATUSES.CHECKED_IN;
-        media.qty ++;
     }
 
     media.checkOut = function(){
-        if(media.qty >0){
-            media.qty --;
-            this.status = STATUSES.CHECKED_OUT;
+        if(media.qty > 0){
+            media.subQty();
+            if(media.qty === 0)
+                this.status = STATUSES.CHECKED_OUT;
+            else
+                this.status = STATUSES.CHECKED_IN;
         }
+    }
+
+    //make sure that we are editing qty properly
+    media.addQty = function(){
+        media.qty++;
+        console.log(media.qty)
+    }
+    media.subQty = function(){
+        media.qty--;
+        console.log(media.qty)
     }
 
     media.isAvailable = function(){
@@ -27,8 +40,6 @@ function LibraryItem(media, removeFunction){
     //media.remove = removeFunction || (() => {});
     //                             || in case a function wasn't provided
     media.remove = removeFunction || function(){};
-
-
 
     return media;
 }

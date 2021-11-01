@@ -1,10 +1,10 @@
-import {LibraryItem} from "@/models/LibraryItems";
+import {BagItem} from "@/models/BagItem";
 
 function Bag(){
     let arr = [];
 
     arr.addItem = function(item){
-        this.push(new LibraryItem(
+        this.push(new BagItem(
             item,
             ((collection) => function(){
             collection.removeItem(this);

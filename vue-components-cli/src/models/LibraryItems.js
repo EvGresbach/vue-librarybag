@@ -1,9 +1,9 @@
-const MILLITOMIN = 60000;
+const MILLI_TO_MIN = 60000;
 
-function LibraryItem(media, removeFunction, qty){
+function LibraryItem(media, removeFunction){
     // list of possible values (enum)
     const STATUSES = {CHECKED_OUT: 'out', CHECKED_IN: 'in', LOST: 'lost'}
-    media.qty = qty || 2;
+    media.qty = Math.floor(Math.random() * 10 ) + 1; //qty between 1 and 10
 
     // decorating/adding functionality to an existing object
     media.status = STATUSES.CHECKED_IN;
@@ -11,6 +11,7 @@ function LibraryItem(media, removeFunction, qty){
     // methods
     media.checkIn = function(){
         this.status = STATUSES.CHECKED_IN;
+        media.qty ++;
     }
 
     media.checkOut = function(){
@@ -40,7 +41,7 @@ function Book(trackName, artistName, trackId){
 
 // same as above using class syntax
 function Movie(trackName, trackTimeMillis, trackId){
-    this.trackTimeMillis = trackTimeMillis/MILLITOMIN;
+    this.trackTimeMillis = trackTimeMillis/MILLI_TO_MIN;
     this.trackName = trackName;
     this.trackId = trackId;
 }
@@ -80,13 +81,13 @@ function Audiobook(collectionName, artistName, trackId){
 }
 
 function ShortFilm(trackName, trackTimeMillis, trackId){
-    this.trackTimeMillis = trackTimeMillis/MILLITOMIN;
+    this.trackTimeMillis = trackTimeMillis/MILLI_TO_MIN;
     this.trackName = trackName;
     this.trackId = trackId;
 
 }
 function TvShow(trackName, trackTimeMillis, collectionName, trackId){
-    this.trackTimeMillis = trackTimeMillis/MILLITOMIN;
+    this.trackTimeMillis = trackTimeMillis/MILLI_TO_MIN;
     this.trackName = trackName;
     this.collectionName = collectionName;
     this.trackId = trackId;

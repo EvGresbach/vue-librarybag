@@ -2,9 +2,9 @@
   <div>
     <b-navbar class="mt-0 justify-content-between" type="dark" variant="dark">
       <b-navbar-brand class="m-4">Library Bag</b-navbar-brand>
-      <b-nav-form class="m-4">
+      <b-nav-form class="m-4" @submit.prevent="searchItems()">
         <b-form-input class="mr-sm-2" placeholder="Search" v-model="searchTerm"></b-form-input>
-        <b-button variant="outline-success" @click="searchItems()">Search</b-button>
+        <b-button variant="outline-success" type="submit">Search</b-button>
       </b-nav-form>
     </b-navbar>
     <div id="app">
@@ -32,7 +32,7 @@ export default {
     return {
       bag: new Bag(),
       library: new LibraryCollection(),
-      searchTerm: 'tt',
+      searchTerm: '',
       }
     },
   components: {
@@ -58,8 +58,8 @@ export default {
         let url = 'https://itunes.apple.com/search';
         let config = {
           params:{
-            term: "twenty one pilots",
-            limit: 10,
+            term: this.searchTerm,
+            limit: 25,
           }
         }
         console.log(axios(url, config));
@@ -75,7 +75,7 @@ export default {
                   this.library.addItem(Object.assign(new Podcast, response.data.results[i]))
                 //   music (album)
                 if(response.data.results[i].kind === 'song'){
-                  if(!this.library.some(i => i.collectionId === response.data.results[i].collectionId))
+                  if(!this.library.some(l => l.collectionId === response.data.results[i].collectionId))
                     this.library.addItem((Object.assign(new Album, response.data.results[i])))
 
                   this.library.addItem(Object.assign(new Song, response.data.results[i]))
@@ -102,6 +102,9 @@ export default {
             })
             .catch((error)=> {
               console.error(error);
+            })
+            .finally(() => {
+              this.searchTerm = '';
             })
       }
     }

@@ -17,13 +17,27 @@
 import Book from "./Book";
 import Movie from "@/components/Movie";
 import Album from "@/components/Album";
+import Podcast from "@/components/Podcast";
+import MusicVideo from "@/components/MusicVideo";
+import Audiobook from "@/components/Audiobook";
+import ShortFilm from "@/components/ShortFilm";
+import TvShow from "@/components/TvShow";
+import Software from "@/components/Software";
+import Song from "@/components/Song";
 
 export default {
   name: "LibraryItem",
   components: {
     Book,
     Movie,
-    Album
+    Album,
+    Podcast,
+    MusicVideo,
+    Audiobook,
+    ShortFilm,
+    TvShow,
+    Software,
+    Song,
   },
   props: {
     item: Object,

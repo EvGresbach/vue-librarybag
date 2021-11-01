@@ -1,5 +1,6 @@
 <template>
   <div class="card" :class="item.isAvailable() ? 'border-success' : 'border-warning'" style="border-width: 3px;">
+    <img :src="art" height="auto" width="auto">
     <div class="card-body">
       <component :is="typeOfItem" :item="item"></component>
       <p>{{item.qty}}</p>
@@ -42,6 +43,11 @@ export default {
   props: {
     item: Object,
     removeFunction: Function,
+  },
+  data(){
+    return{
+      art: this.item.artworkUrl100 || this.item.artworkUrl30 || this.item.artworkUrl30 ||'',
+    }
   },
   methods: {
     addToBag(){

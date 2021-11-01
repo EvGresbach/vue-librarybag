@@ -110,7 +110,12 @@ export default {
     }
 
   },
-
+  watch: {
+    library: {
+      handler: function(){console.log(this.library)}, deep: true
+      //watch to see if qtys are changing right
+    }
+  }
 
 }
 

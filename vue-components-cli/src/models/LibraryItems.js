@@ -24,7 +24,7 @@ function LibraryItem(media, removeFunction){
         }
     }
 
-    //make sure that we are editing qty properly
+    //make sure that we are editing qty properly and to see log
     media.addQty = function(){
         media.qty++;
         console.log(media.qty)
